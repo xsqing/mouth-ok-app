@@ -11,6 +11,7 @@ import { getRecordByDate, getMonthStatistics } from "../../api/record";
 import Calendar from "@/components/Calendar";
 import Separator from "@/components/Separator";
 import Statistic from "@/components/Record/Statistic";
+import RecordForm from "@/components/Record/RecordForm";
 
 // Record
 const Record = () => {
@@ -63,40 +64,47 @@ const Record = () => {
    * 获取当前日期的数据
    * @param {string} day
    */
-  const { data: recordDataByDate, loading: recordLoading } = useRequest(
-    () => getRecordByDate(currSelectedDate.dateString),
-    {
-      refreshDeps: [currSelectedDate.dateString],
-    }
-  );
+  const {
+    data: recordDataByDate,
+    loading: recordLoading,
+    mutate: setRecordDataByDate,
+  } = useRequest(() => getRecordByDate(currSelectedDate.dateString), {
+    refreshDeps: [currSelectedDate.dateString],
+  });
 
   /**
    * 获取当前月份的统计数据
    * @param {string} month
    */
-  const { data: monthStatisticsData, loading: monthStatisticsLoading } =
-    useRequest(
-      () =>
-        getMonthStatistics(
-          `${currSelectedDate.year}-${currSelectedDate.month}`
-        ),
-      {
-        refreshDeps: [currSelectedDate.month, currSelectedDate.year],
-      }
-    );
+  const {
+    data: monthStatisticsData,
+    loading: monthStatisticsLoading,
+    refresh: monthStatisticsRefetch,
+  } = useRequest(
+    () =>
+      getMonthStatistics(`${currSelectedDate.year}-${currSelectedDate.month}`),
+    {
+      refreshDeps: [currSelectedDate.month, currSelectedDate.year],
+    }
+  );
 
+  // 将本月选中的数据进行处理供日历组件使用
   const handleCurrentMonthMarked = (data) => {
     if (data) {
+      const temp = {};
       data.forEach((ucler) => {
-        if (currentMonthSelected[ucler.date]) {
-          currentMonthSelected[ucler.date].marked = true;
-        } else {
-          currentMonthSelected[ucler.date] = {
-            marked: true,
-          };
-        }
+        temp[ucler.date] = { marked: true };
       });
-      setCurrentMonthSelected({ ...currentMonthSelected });
+      if (temp[currSelectedDate.dateString]) {
+        temp[currSelectedDate.dateString].selected = true;
+      } else {
+        temp[currSelectedDate.dateString] = {
+          selected: true,
+        };
+      }
+      setCurrentMonthSelected({ ...temp });
+    } else {
+      setCurrentMonthSelected({});
     }
   };
   useEffect(() => {
@@ -119,7 +127,11 @@ const Record = () => {
             markedDates={currentMonthSelected}
             onMonthChange={onDayPress}
           />
-
+          <RecordForm
+            ucler={recordDataByDate}
+            setUclerData={setRecordDataByDate}
+            statsRefetch={monthStatisticsRefetch}
+          />
           <View className="mt-5 px-4 gap-2"></View>
         </View>
       </ScrollView>

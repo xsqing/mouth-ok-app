@@ -9,7 +9,7 @@ const showToast = (message) => {
 };
 
 const request = axios.create({
-  baseURL: "http://172.20.208.223:3000/api/v1/",
+  baseURL: "http://172.20.217.219:3000/api/v1/",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
@@ -37,12 +37,17 @@ request.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    handleResonseError(error.response.status);
+    handleResonseError(error);
     return Promise.reject(error);
   }
 );
 
-function handleResonseError(status) {
+function handleResonseError(error) {
+  if (error.message === "Network Error") {
+    showToast("网络错误");
+    return;
+  }
+  const status = error.response.status;
   const errorMap = {
     401: "未登录，请先登录",
     403: "无权访问",

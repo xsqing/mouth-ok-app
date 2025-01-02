@@ -1,24 +1,22 @@
-import { View, Switch } from "react-native";
+import { View } from "react-native";
 import React from "react";
-import { RecordFormItem } from "../../app/(tabs)/record/components/RecordFormItem";
+import { RecordFormItem } from "./RecordFormItem";
 import { icons } from "../../constants";
-import theme from "../../constants/theme";
+import { Switch } from "@/components/ui/switch";
 
 const HasUcler = ({ hasUcler, onItemPress }) => {
   const toggleSwitch = () => {
     onItemPress({
-      hasUcler: !hasUcler,
+      isUcler: !hasUcler ? 1 : 0,
     });
   };
   return (
     <RecordFormItem name="是否溃疡" icon={icons.hasUcler}>
       <View>
         <Switch
-          trackColor={{ false: theme.gray_300, true: theme.secondary }}
-          thumbColor={hasUcler ? "#ffffff" : "#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
-          value={hasUcler}
+          value={hasUcler ? true : false}
         />
       </View>
     </RecordFormItem>

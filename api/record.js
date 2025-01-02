@@ -6,9 +6,10 @@ import request from "./request";
  * @returns
  */
 export const getRecordByDate = async (date) => {
-  console.log("请求了记录");
   try {
-    const res = await request.get("ucler/findByDate", { params: { date } });
+    const res = await request.get("ucler/findByDateWithoutCreate", {
+      params: { date },
+    });
     return res.data;
   } catch (error) {
     return null;
@@ -30,16 +31,13 @@ export const createRecordByDate = async (date, user) => {
 };
 
 export const updateRecord = async (recordId, kvMap) => {
-  // if (!recordId) return;
-  // const record = AV.Object.createWithoutData(CLASS_NAME, recordId);
-  // for (const [key, value] of Object.entries(kvMap)) {
-  //   record.set(key, value);
-  // }
-  // try {
-  //   await record.save();
-  // } catch (error) {
-  //   ErrorAlert();
-  // }
+  console.log(recordId, kvMap);
+  try {
+    const res = await request.post(`ucler/update`, { id: recordId, ...kvMap });
+    return res.data;
+  } catch (error) {
+    return null;
+  }
 };
 
 /**
@@ -49,12 +47,10 @@ export const updateRecord = async (recordId, kvMap) => {
  * @param {string} month 日期字符串 YYYY-MM
  */
 export const getMonthStatistics = async (month) => {
-  console.log("请求了月统计");
   try {
     const res = await request.get("ucler/getStatisticsByMonth", {
       params: { month },
     });
-    console.log(res.data, month);
     return res.data;
   } catch (error) {
     return null;

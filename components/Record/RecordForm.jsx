@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
 import HasUcler from "./HasUcler";
 import PainLevel from "./PainLevel";
@@ -6,11 +6,11 @@ import { updateRecord } from "../../api/record";
 export default RecordForm = ({ ucler, setUclerData, statsRefetch }) => {
   let recordId;
   if (ucler) {
-    recordId = ucler.objectId;
+    recordId = ucler.id;
   }
   const onItemPress = async (data) => {
     updateRecord(recordId, data).then(() => {
-      if (data.hasUcler !== undefined) {
+      if (data.isUcler !== undefined) {
         statsRefetch();
       }
     });
@@ -20,16 +20,16 @@ export default RecordForm = ({ ucler, setUclerData, statsRefetch }) => {
     <View className="p-4 flex-col gap-2">
       <HasUcler
         recordId={recordId}
-        hasUcler={ucler?.hasUcler}
+        hasUcler={ucler?.isUcler}
         onItemPress={onItemPress}
       />
-      {ucler?.hasUcler && (
+      {ucler?.isUcler ? (
         <PainLevel
           recordId={recordId}
           painLevel={ucler?.painLevel}
           onItemPress={onItemPress}
         />
-      )}
+      ) : null}
     </View>
   );
 };
