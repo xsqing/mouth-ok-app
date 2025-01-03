@@ -6,7 +6,6 @@
 
 import React from "react";
 import { Calendar, LocaleConfig } from "react-native-calendars";
-import theme from "../constants/theme";
 import dayjs from "dayjs";
 // 设置中文 locale
 LocaleConfig.locales["zh"] = {
@@ -63,6 +62,7 @@ const withTheme = (WrappedComponent, defaultTheme) => {
         {...otherProps}
         headerStyle={{ color: theme.secondary }}
         maxDate={today}
+        allowSelectionOutOfRange={false}
       />
     );
   };

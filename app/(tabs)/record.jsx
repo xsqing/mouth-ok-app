@@ -2,7 +2,7 @@ import { ScrollView, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import dayjs from "dayjs";
-import { useRequest } from "ahooks";
+import { useFavicon, useRequest } from "ahooks";
 
 // api
 import { getRecordByDate, getMonthStatistics } from "../../api/record";
@@ -29,6 +29,16 @@ const Record = () => {
   const [currentMonthSelected, setCurrentMonthSelected] = useState({
     [currSelectedDate.dateString]: { selected: true },
   });
+
+  //右侧切换月份是否可以点击
+  const [disableArrowRight, setDisableArrowRight] = useState(false);
+
+  useEffect(() => {
+    const disable =
+      today.format("YYYY-M") ===
+      `${currSelectedDate.year}-${currSelectedDate.month}`;
+    setDisableArrowRight(disable);
+  }, [currSelectedDate]);
 
   /**
    * {"dateString": "2024-12-30", "day": 30, "month": 12, "timestamp": 1735516800000, "year": 2024}
@@ -126,6 +136,7 @@ const Record = () => {
             onDayPress={onDayPress}
             markedDates={currentMonthSelected}
             onMonthChange={onDayPress}
+            disableArrowRight={disableArrowRight}
           />
           <RecordForm
             ucler={recordDataByDate}
