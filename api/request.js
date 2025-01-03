@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
 
 const testToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNxaW5nIiwiaWF0IjoxNzM1NjM0MTk5LCJleHAiOjE3MzU4NTAxOTl9.s-SrhlyS1kADZHzyHmJtMGtoqUXMzm-UBfMD7Fuuers";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNxaW5nIiwiaWF0IjoxNzM1ODY5MjY1LCJleHAiOjE3MzYwODUyNjV9.SY0GmhFWFE2Qdn9tCZHlJY_BmNYZLAOpmn_env7PKnM";
 const showToast = (message) => {
   Alert.alert("提示", message);
 };

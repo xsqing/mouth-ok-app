@@ -31,7 +31,9 @@ export const createRecordByDate = async (date, user) => {
 };
 
 export const updateRecord = async (recordId, kvMap) => {
-  console.log(recordId, kvMap);
+  if (!recordId) {
+    return null;
+  }
   try {
     const res = await request.post(`ucler/update`, { id: recordId, ...kvMap });
     return res.data;
