@@ -131,7 +131,6 @@ const Record = () => {
             currentDate={currSelectedDate}
             count={monthStatisticsData?.count}
           />
-          <Separator />
           <Calendar
             onDayPress={onDayPress}
             markedDates={currentMonthSelected}
