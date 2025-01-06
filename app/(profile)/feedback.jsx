@@ -1,9 +1,8 @@
 import { Text, View } from "react-native";
-
-export default Vip = () => {
+export default Feedback = () => {
   return (
     <View>
-      <Text>vip</Text>
+      <Text>feedback</Text>
     </View>
   );
 };

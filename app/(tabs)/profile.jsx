@@ -26,10 +26,10 @@ const Profile = () => {
           </HStack>
         </Card>
         <PressableListGroup>
-          <PressableListItem name="会员" href="/profile/member" />
-          <PressableListItem name="个人信息" href="/profile/info" />
-          <PressableListItem name="设置" href="/profile/settings" />
-          <PressableListItem name="关于" href="/profile/settings" />
+          <PressableListItem name="会员" href="(profile)/vip" />
+          <PressableListItem name="个人信息" href="(profile)/abouts" />
+          <PressableListItem name="反馈" href="(profile)/feedback" />
+          <PressableListItem name="关于" href="(profile)/about" />
         </PressableListGroup>
       </View>
     </SafeAreaView>

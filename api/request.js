@@ -3,13 +3,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
 
 const testToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNxaW5nIiwiaWF0IjoxNzM1ODY5MjY1LCJleHAiOjE3MzYwODUyNjV9.SY0GmhFWFE2Qdn9tCZHlJY_BmNYZLAOpmn_env7PKnM";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNxaW5nIiwiaWF0IjoxNzM2MTI5MjYwLCJleHAiOjE3MzYzNDUyNjB9.eGkr_MI4SLl0LxzvimjQBtGUKMDGRixKyH4zbWPrKZw";
 const showToast = (message) => {
   Alert.alert("提示", message);
 };
 
 const request = axios.create({
-  baseURL: "http://172.20.217.219:3000/api/v1/",
+  baseURL: "http://172.20.214.1:3000/api/v1/",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",

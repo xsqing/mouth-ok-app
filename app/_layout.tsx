@@ -33,6 +33,7 @@ export default function RootLayout() {
           options={{ headerShown: false }}
         ></Stack.Screen>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(profile)" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
     </GluestackUIProvider>
