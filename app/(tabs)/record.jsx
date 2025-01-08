@@ -78,6 +78,7 @@ const Record = () => {
     data: recordDataByDate,
     loading: recordLoading,
     mutate: setRecordDataByDate,
+    refresh: recordRefetch,
   } = useRequest(() => getRecordByDate(currSelectedDate.dateString), {
     refreshDeps: [currSelectedDate.dateString],
   });
@@ -141,6 +142,7 @@ const Record = () => {
             ucler={recordDataByDate}
             setUclerData={setRecordDataByDate}
             statsRefetch={monthStatisticsRefetch}
+            uclerRefetch={recordRefetch}
           />
           <View className="mt-5 px-4 gap-2"></View>
         </View>

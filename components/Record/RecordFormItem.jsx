@@ -1,15 +1,16 @@
 import { Image, Text, View } from "react-native";
+import { Card } from "@/components/ui/card";
 
 export const RecordFormItem = ({ children, otherStyle, icon, name }) => {
   return (
-    <View
-      className={` h-16  border-border border-[1px] rounded-xl ${otherStyle} flex-row justify-between items-center px-2`}
+    <Card
+      className={`rounded-lg h-16 ${otherStyle} flex-row justify-between items-center px-2`}
     >
       <View className="flex-row justify-between items-center gap-2">
         <Image className="!w-6 !h-6" source={icon} resizeMode="contain" />
         <Text className=" text-sm">{name}</Text>
       </View>
       {children}
-    </View>
+    </Card>
   );
 };

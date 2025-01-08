@@ -13,11 +13,7 @@ const HasUcler = ({ hasUcler, onItemPress }) => {
   return (
     <RecordFormItem name="是否溃疡" icon={icons.hasUcler}>
       <View>
-        <Switch
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleSwitch}
-          value={hasUcler ? true : false}
-        />
+        <Switch onValueChange={toggleSwitch} value={hasUcler ? true : false} />
       </View>
     </RecordFormItem>
   );
