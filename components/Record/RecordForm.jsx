@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import HasUcler from "./HasUcler";
 import PainLevel from "./PainLevel";
 import UclerCount from "./UclerCount";
+import { ActivityIndicator } from "@ant-design/react-native";
 import { updateRecord } from "../../api/record";
 export default RecordForm = ({
   ucler,
   setUclerData,
   statsRefetch,
   uclerRefetch,
+  isLoading,
 }) => {
   const onItemPress = (data) => {
     // 本地数据更新
@@ -33,7 +35,10 @@ export default RecordForm = ({
     return Object.keys(data).includes("isUcler");
   };
   return (
-    <View className="mt-2 flex-col gap-2 mx-2">
+    <View className="mt-2 gap-2">
+      <View className="absolute top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2   z-50">
+        <ActivityIndicator animating={isLoading} size="large" />
+      </View>
       <HasUcler hasUcler={ucler?.isUcler} onItemPress={onItemPress} />
       {ucler?.isUcler ? (
         <>

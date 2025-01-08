@@ -2,10 +2,9 @@ import { Text, View } from "react-native";
 import { HStack } from "@/components/ui/hstack";
 import { VStack } from "@/components/ui/vstack";
 import { Card } from "@/components/ui/card";
-import dayjs from "dayjs";
 export default Statistic = ({ count, currentDate }) => {
   return (
-    <Card className="rounded-lg m-3">
+    <Card className="rounded-lg mb-2">
       <HStack className="items-center">
         <VStack className="max-w-max">
           <HStack>

@@ -1,6 +1,5 @@
 import { ScrollView, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import dayjs from "dayjs";
 import { useFavicon, useRequest } from "ahooks";
 
@@ -9,9 +8,9 @@ import { getRecordByDate, getMonthStatistics } from "../../api/record";
 
 // components
 import Calendar from "@/components/Calendar";
-import Separator from "@/components/Separator";
 import Statistic from "@/components/Record/Statistic";
 import RecordForm from "@/components/Record/RecordForm";
+import { Card } from "../../components/ui/card";
 
 // Record
 const Record = () => {
@@ -125,29 +124,30 @@ const Record = () => {
   }, [monthStatisticsData]);
 
   return (
-    <SafeAreaView className="pt-5">
-      <ScrollView>
-        <View className="min-h-[100vh] pb-5">
-          <Statistic
-            currentDate={currSelectedDate}
-            count={monthStatisticsData?.count}
-          />
+    <ScrollView>
+      <View className="min-h-[100vh] m-2">
+        <Statistic
+          currentDate={currSelectedDate}
+          count={monthStatisticsData?.count}
+        />
+        <Card>
           <Calendar
             onDayPress={onDayPress}
             markedDates={currentMonthSelected}
             onMonthChange={onDayPress}
             disableArrowRight={disableArrowRight}
           />
-          <RecordForm
-            ucler={recordDataByDate}
-            setUclerData={setRecordDataByDate}
-            statsRefetch={monthStatisticsRefetch}
-            uclerRefetch={recordRefetch}
-          />
-          <View className="mt-5 px-4 gap-2"></View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </Card>
+        <RecordForm
+          ucler={recordDataByDate}
+          setUclerData={setRecordDataByDate}
+          statsRefetch={monthStatisticsRefetch}
+          uclerRefetch={recordRefetch}
+          isLoading={recordLoading}
+        />
+        <View className="mt-5 px-4 gap-2"></View>
+      </View>
+    </ScrollView>
   );
 };
 

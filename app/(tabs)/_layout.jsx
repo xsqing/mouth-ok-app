@@ -23,15 +23,34 @@ const TabIcon = ({ icon, color }) => {
 };
 
 const tabsMeta = [
-  { title: "记录", name: "Record", icon: "home", component: RecordScreen },
+  {
+    title: "记录",
+    name: "Record",
+    icon: "home",
+    component: RecordScreen,
+    headerShown: true,
+  },
   {
     title: "历史",
     name: "Statistic",
     icon: "statistic",
     component: StatisticScreen,
+    headerShown: false,
   },
-  { title: "百科", name: "Wiki", icon: "plus", component: WikiScreen },
-  { title: "我的", name: "Profile", icon: "profile", component: ProfileScreen },
+  {
+    title: "百科",
+    name: "Wiki",
+    icon: "plus",
+    component: WikiScreen,
+    headerShown: false,
+  },
+  {
+    title: "我的",
+    name: "Profile",
+    icon: "profile",
+    component: ProfileScreen,
+    headerShown: false,
+  },
 ];
 
 const TabsScreens = () => {
@@ -44,7 +63,8 @@ const TabsScreens = () => {
         component={tab.component}
         options={{
           title: tab.title,
-          headerShown: false,
+          headerShown: tab.headerShown,
+
           tabBarIcon: ({ color, focused }) => (
             <TabIcon
               icon={icons[tab.icon]}
@@ -72,6 +92,11 @@ const TabsLayout = () => {
           tabBarLabelStyle: {
             fontSize: 12,
           },
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontSize: 16,
+          },
+          headerShadowVisible: false,
           tabBarButton: (props) => (
             <TouchableWithoutFeedback onPress={props.onPress}>
               <View
