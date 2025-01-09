@@ -5,6 +5,8 @@ import PainLevel from "./PainLevel";
 import UclerCount from "./UclerCount";
 import { ActivityIndicator } from "@ant-design/react-native";
 import { updateRecord } from "../../api/record";
+import UclerDesc from "./UclerDesc";
+import { useDebounceFn } from "ahooks";
 export default RecordForm = ({
   ucler,
   setUclerData,
@@ -12,13 +14,23 @@ export default RecordForm = ({
   uclerRefetch,
   isLoading,
 }) => {
-  const onItemPress = (data) => {
+  const onItemPress = (data, shouldDebounce = false) => {
     // 本地数据更新
     setUclerData({
       ...ucler,
       ...data,
     });
 
+    if (shouldDebounce) {
+      // 延时更新
+      handleUpdateDebounce(data);
+    } else {
+      // 立即更新
+      handleUpdate(data);
+    }
+  };
+
+  const handleUpdate = (data) => {
     // 服务器数据更新
     updateRecord(ucler?.id, data).then(() => {
       // 刷新统计数据
@@ -30,6 +42,10 @@ export default RecordForm = ({
       uclerRefetch();
     });
   };
+
+  const { run: handleUpdateDebounce } = useDebounceFn(handleUpdate, {
+    wait: 1000,
+  });
 
   const shouldRefetchStats = (data) => {
     return Object.keys(data).includes("isUcler");
@@ -47,6 +63,7 @@ export default RecordForm = ({
             onItemPress={onItemPress}
           ></UclerCount>
           <PainLevel painLevel={ucler?.painLevel} onItemPress={onItemPress} />
+          <UclerDesc desc={ucler?.description} onEdit={onItemPress}></UclerDesc>
         </>
       ) : null}
     </View>
