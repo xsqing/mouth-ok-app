@@ -1,18 +1,11 @@
-import { View, ScrollView, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View } from "react-native";
 import React from "react";
-
+import DatePicker from "../../components/DatePicker";
 const Statistic = () => {
   return (
-    <SafeAreaView className="bg-primary">
-      <ScrollView>
-        <View className="min-h-[100vh] pb-5 pt-5 relative">
-          <Text className="text-white text-xl font-psemibold text-center">
-            口康历史
-          </Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <View className="min-h-[100vh] p-2">
+      <DatePicker></DatePicker>
+    </View>
   );
 };
 

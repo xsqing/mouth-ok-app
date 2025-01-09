@@ -31,11 +31,11 @@ const tabsMeta = [
     headerShown: true,
   },
   {
-    title: "历史",
+    title: "统计",
     name: "Statistic",
     icon: "statistic",
     component: StatisticScreen,
-    headerShown: false,
+    headerShown: true,
   },
   {
     title: "百科",

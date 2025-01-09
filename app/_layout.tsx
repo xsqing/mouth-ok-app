@@ -12,7 +12,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    SpaceMono: require("@ant-design/icons-react-native/fonts/antoutline.ttf"),
+    antoutline: require("@ant-design/icons-react-native/fonts/antoutline.ttf"),
   });
 
   useEffect(() => {
