@@ -1,45 +1,35 @@
 import { View, Text } from "react-native";
 import React from "react";
-import DatePicker from "../../components/DatePicker";
+import { useRequest } from "ahooks";
+import StatisticItem from "@/components/Statistic/StatisticItem";
+import { getStatisticsByLifecycle } from "@/api/statistics";
+import { useFocusEffect } from "expo-router";
+
 const Statistic = () => {
+  const { data, refresh } = useRequest(getStatisticsByLifecycle);
+  useFocusEffect(refresh);
   return (
     <View className="min-h-[100vh] p-2">
-      <DatePicker></DatePicker>
-      <View>
-        <Text>溃疡总次数</Text>
-        <Text>100</Text>
+      <Text className="text-xl font-medium mb-2 text-center text-gray-600 tracking-wide">
+        自{data?.firstRecordTime}至今
+      </Text>
+      <View className="flex-row gap-2 mb-2">
+        <StatisticItem title="溃疡总次数" data={data?.times} />
+        <StatisticItem title="昨日溃疡数量" data={data?.currentDayUclerCount} />
       </View>
-      <View>
-        <Text>昨日溃疡数量</Text>
-        <Text>3</Text>
-      </View>
-      <View>
-        <Text>本月溃疡次数</Text>
-        <Text>100</Text>
-      </View>
-      <View>
-        <Text>平均发作频率</Text>
-        <Text>10天</Text>
-      </View>
-      <View>
-        <Text>本月平均愈合时间</Text>
-        <Text>10天</Text>
-      </View>
-      <View>
-        <Text>发作时间分布(瓷砖图)</Text>
-        <Text>10天</Text>
-      </View>
-      <View>
-        <Text>溃疡大小分布</Text>
-        <Text>10天</Text>
-      </View>
-      <View>
-        <Text>疼痛程度分布</Text>
-        <Text>10天</Text>
-      </View>
-      <View>
-        <Text>常见位置分布</Text>
-        <Text>10天</Text>
+      <View className="flex-row gap-2 mb-2">
+        <StatisticItem
+          title="平均发作频率(次/月)"
+          data={data?.uclerFrequencyPerMonth}
+        />
+        <StatisticItem
+          title="平均愈合时间"
+          data={
+            data?.averageHealingTime
+              ? data?.averageHealingTime + "天"
+              : "暂无数据"
+          }
+        />
       </View>
     </View>
   );
