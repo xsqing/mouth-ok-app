@@ -4,10 +4,12 @@ import { useRequest } from "ahooks";
 import StatisticItem from "@/components/Statistic/StatisticItem";
 import { getStatisticsByLifecycle } from "@/api/statistics";
 import { useFocusEffect } from "expo-router";
-
+import PainLevelChart from "@/components/Statistic/PainLevelChart";
 const Statistic = () => {
-  const { data, refresh } = useRequest(getStatisticsByLifecycle);
-  useFocusEffect(refresh);
+  const { data, run } = useRequest(getStatisticsByLifecycle, {
+    manual: true,
+  });
+  useFocusEffect(run);
   return (
     <View className="min-h-[100vh] p-2">
       <Text className="text-xl font-medium mb-2 text-center text-gray-600 tracking-wide">
@@ -31,6 +33,7 @@ const Statistic = () => {
           }
         />
       </View>
+      <PainLevelChart painLevelData={data?.uclerPainLevelDistribution} />
     </View>
   );
 };
