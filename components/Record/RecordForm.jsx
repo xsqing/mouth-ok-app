@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import HasUcler from "./HasUcler";
 import PainLevel from "./PainLevel";
 import UclerCount from "./UclerCount";
+import UclerSize from "./UclerSize";
 import { ActivityIndicator } from "@ant-design/react-native";
 import { updateRecord } from "../../api/record";
 import UclerDesc from "./UclerDesc";
@@ -63,6 +64,7 @@ export default RecordForm = ({
             onItemPress={onItemPress}
           ></UclerCount>
           <PainLevel painLevel={ucler?.painLevel} onItemPress={onItemPress} />
+          <UclerSize size={ucler?.size} onEdit={onItemPress}></UclerSize>
           <UclerDesc desc={ucler?.description} onEdit={onItemPress}></UclerDesc>
         </>
       ) : null}

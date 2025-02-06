@@ -24,6 +24,8 @@ import habbySleep from "../assets/icons/habby_sleep.png";
 import habbyNoSpicy from "../assets/icons/habby_nospicy.png";
 import hasUcler from "../assets/icons/record/has_ucler.png";
 import statistic from "../assets/icons/statistic.png";
+import uclerSize from "../assets/icons/record/ucler-size.png";
+import uclerSizeSelected from "../assets/icons/record/ucler-size-selected.png";
 
 export default {
   play,
@@ -52,4 +54,6 @@ export default {
   habbySleep,
   habbyNoSpicy,
   statistic,
+  uclerSize,
+  uclerSizeSelected,
 };
