@@ -1,5 +1,6 @@
-import { View, useWindowDimensions } from "react-native";
+import { View, useWindowDimensions, Text } from "react-native";
 import { SvgChart, SVGRenderer } from "@wuba/react-native-echarts";
+import { Card } from "../ui/card";
 import * as echarts from "echarts/core";
 import { useRef, useEffect } from "react";
 import { PieChart } from "echarts/charts";
@@ -11,11 +12,8 @@ echarts.use([PieChart, SVGRenderer, TooltipComponent, LegendComponent]);
  * @returns
  */
 export default function PainLevelChart({ painLevelData }) {
+  const { width } = useWindowDimensions();
   const chartRef = useRef(null);
-  const { width: screenWidth } = useWindowDimensions();
-
-  // 计算图表尺寸，留出边距
-  const chartSize = Math.min(screenWidth - 100, 400);
 
   useEffect(() => {
     if (!painLevelData) return;
@@ -24,8 +22,8 @@ export default function PainLevelChart({ painLevelData }) {
     if (chartRef.current) {
       chart = echarts.init(chartRef.current, "light", {
         renderer: "svg",
-        width: chartSize,
-        height: chartSize,
+        width: width - 32, // 考虑左右边距
+        height: (width - 32) * 0.5,
       });
 
       chart.setOption({
@@ -33,35 +31,29 @@ export default function PainLevelChart({ painLevelData }) {
           trigger: "item",
           formatter: "{b}: {c} ({d}%)",
         },
-        legend: {
-          top: "bottom",
-          left: "left",
-        },
+
         series: [
           {
             type: "pie",
-            radius: ["40%", "70%"],
-            label: {
-              show: false,
-            },
+            radius: ["60%", "100%"],
+            center: ["50%", "75%"],
             padAngle: 2,
             itemStyle: {
               borderRadius: 10,
             },
+            showEmptyCircle: false,
+            left: 0,
+            top: 0,
+            startAngle: 180,
+            endAngle: 360,
 
             data: [
-              { value: painLevelData["1"] || 0, name: "没事~" },
-              { value: painLevelData["2"] || 0, name: "轻微" },
-              { value: painLevelData["3"] || 0, name: "有点痛" },
-              { value: painLevelData["4"] || 0, name: "很痛" },
-              { value: painLevelData["5"] || 0, name: "剧痛" },
+              { value: painLevelData["1"], name: "没事~" },
+              { value: painLevelData["2"], name: "轻微" },
+              { value: painLevelData["3"], name: "有点痛" },
+              { value: painLevelData["4"], name: "很痛" },
+              { value: painLevelData["5"], name: "剧痛" },
             ],
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-              },
-            },
           },
         ],
       });
@@ -70,11 +62,12 @@ export default function PainLevelChart({ painLevelData }) {
     return () => {
       chart?.dispose();
     };
-  }, [chartRef.current, painLevelData, chartSize]);
+  }, [chartRef.current, painLevelData, width]);
 
   return (
-    <View style={{ alignItems: "center", marginTop: 10, width: "100%" }}>
+    <Card className="justify-center items-center">
+      <Text>疼痛等级分布</Text>
       <SvgChart ref={chartRef} />
-    </View>
+    </Card>
   );
 }
