@@ -67,7 +67,7 @@ export default function UclerSizeChart({ uclerSizeData }) {
   }, [chartRef.current, uclerSizeData, width]);
 
   return (
-    <Card className="justify-center items-center">
+    <Card className="justify-center items-center rounded-2xl">
       <Text>溃疡大小分布</Text>
       <SizeDesc />
       {hasValidData(uclerSizeData) ? <SvgChart ref={chartRef} /> : <NoData />}

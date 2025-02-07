@@ -8,7 +8,7 @@ export default UclerDesc = ({ desc, onEdit }) => {
     <RecordFormItem
       otherStyle="flex-col items-start h-auto gap-2"
       name="备注"
-      icon={icons.hasUcler}
+      icon={icons.uclerDescIcon}
     >
       <Card variant="outline" className="w-full p-2">
         <Input.TextArea

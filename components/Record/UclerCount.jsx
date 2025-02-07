@@ -8,7 +8,7 @@ export default UclerCount = ({ count = 1, onItemPress }) => {
     });
   };
   return (
-    <RecordFormItem name="溃疡数量" icon={icons.hasUcler}>
+    <RecordFormItem name="溃疡数量" icon={icons.uclerCount}>
       <Stepper
         min={1}
         defaultValue={count}

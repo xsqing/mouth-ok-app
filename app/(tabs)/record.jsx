@@ -125,7 +125,7 @@ const Record = () => {
 
   return (
     <ScrollView>
-      <View className="min-h-[100vh] m-2">
+      <View className="min-h-[100vh] p-4">
         {/* <Statistic
           currentDate={currSelectedDate}
           count={monthStatisticsData?.count}

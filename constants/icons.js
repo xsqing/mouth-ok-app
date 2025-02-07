@@ -26,6 +26,9 @@ import hasUcler from "../assets/icons/record/has_ucler.png";
 import statistic from "../assets/icons/statistic.png";
 import uclerSize from "../assets/icons/record/ucler-size.png";
 import uclerSizeSelected from "../assets/icons/record/ucler-size-selected.png";
+import uclerCount from "../assets/icons/ucler-count.png";
+import uclerSizeIcon from "../assets/icons/ucler-size-icon.png";
+import uclerDescIcon from "../assets/icons/ucler-desc-icon.png";
 
 export default {
   play,
@@ -56,4 +59,7 @@ export default {
   statistic,
   uclerSize,
   uclerSizeSelected,
+  uclerCount,
+  uclerSizeIcon,
+  uclerDescIcon,
 };

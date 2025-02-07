@@ -67,7 +67,7 @@ export default function PainLevelChart({ painLevelData, className }) {
   }, [chartRef.current, painLevelData, width]);
 
   return (
-    <Card className={`${className} justify-center items-center`}>
+    <Card className={`${className} justify-center items-center rounded-2xl`}>
       <Text>疼痛等级分布</Text>
       {hasValidData(painLevelData) ? <SvgChart ref={chartRef} /> : <NoData />}
     </Card>

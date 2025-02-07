@@ -21,7 +21,7 @@ export default UclerSize = ({ size = [0, 0, 0, 0, 0], onEdit }) => {
     });
   };
   return (
-    <RecordFormItem name="溃疡大小" icon={icons.hasUcler}>
+    <RecordFormItem name="溃疡大小" icon={icons.uclerSizeIcon}>
       <View className="flex-row gap-2">
         {size.map((item, index) => {
           return (
