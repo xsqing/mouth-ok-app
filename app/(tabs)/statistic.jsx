@@ -12,8 +12,8 @@ const Statistic = () => {
   });
   useFocusEffect(run);
   return (
-    <ScrollView>
-      <View className="min-h-[100vh] p-2">
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View className="min-h-[100vh] p-4">
         <Text className="text-xl font-medium mb-2 text-center text-gray-600 tracking-wide">
           自{data?.firstRecordTime}至今
         </Text>
