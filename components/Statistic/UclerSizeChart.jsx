@@ -5,6 +5,8 @@ import * as echarts from "echarts/core";
 import { useRef, useEffect } from "react";
 import { PieChart } from "echarts/charts";
 import { TooltipComponent, LegendComponent } from "echarts/components";
+import NoData from "./NoData";
+import { hasValidData } from "@/utils/chart";
 echarts.use([PieChart, SVGRenderer, TooltipComponent, LegendComponent]);
 /**
  *
@@ -41,7 +43,7 @@ export default function UclerSizeChart({ uclerSizeData }) {
             itemStyle: {
               borderRadius: 10,
             },
-            showEmptyCircle: false,
+            showEmptyCircle: true,
             left: 0,
             top: 0,
             startAngle: 180,
@@ -67,11 +69,19 @@ export default function UclerSizeChart({ uclerSizeData }) {
   return (
     <Card className="justify-center items-center">
       <Text>溃疡大小分布</Text>
+      <SizeDesc />
+      {hasValidData(uclerSizeData) ? <SvgChart ref={chartRef} /> : <NoData />}
+    </Card>
+  );
+}
+
+function SizeDesc() {
+  return (
+    <View className="justify-center items-center">
       <Text className="text-xs text-gray-500">
         芝麻:(1-2mm)、小米:(2-3mm)、高粱:(3-4mm)
       </Text>
       <Text className="text-xs text-gray-500">绿豆:(4-5mm)、黄豆:(5-8mm)</Text>
-      <SvgChart ref={chartRef} />
-    </Card>
+    </View>
   );
 }

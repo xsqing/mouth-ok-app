@@ -5,6 +5,8 @@ import * as echarts from "echarts/core";
 import { useRef, useEffect } from "react";
 import { PieChart } from "echarts/charts";
 import { TooltipComponent, LegendComponent } from "echarts/components";
+import NoData from "./NoData";
+import { hasValidData } from "@/utils/chart";
 echarts.use([PieChart, SVGRenderer, TooltipComponent, LegendComponent]);
 /**
  *
@@ -67,7 +69,7 @@ export default function PainLevelChart({ painLevelData, className }) {
   return (
     <Card className={`${className} justify-center items-center`}>
       <Text>疼痛等级分布</Text>
-      <SvgChart ref={chartRef} />
+      {hasValidData(painLevelData) ? <SvgChart ref={chartRef} /> : <NoData />}
     </Card>
   );
 }

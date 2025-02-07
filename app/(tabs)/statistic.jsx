@@ -32,9 +32,7 @@ const Statistic = () => {
           <StatisticItem
             title="平均愈合时间"
             data={
-              data?.averageHealingTime
-                ? data?.averageHealingTime + "天"
-                : "暂无数据"
+              data?.averageHealingTime ? data?.averageHealingTime + "天" : "-"
             }
           />
         </View>
