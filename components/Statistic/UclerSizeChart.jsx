@@ -11,12 +11,12 @@ echarts.use([PieChart, SVGRenderer, TooltipComponent, LegendComponent]);
  * @param {{1: number, 2: number, 3: number, 4: number, 5: number}} painLevelData
  * @returns
  */
-export default function PainLevelChart({ painLevelData, className }) {
+export default function UclerSizeChart({ uclerSizeData }) {
   const { width } = useWindowDimensions();
   const chartRef = useRef(null);
 
   useEffect(() => {
-    if (!painLevelData) return;
+    if (!uclerSizeData) return;
 
     let chart;
     if (chartRef.current) {
@@ -48,11 +48,11 @@ export default function PainLevelChart({ painLevelData, className }) {
             endAngle: 360,
 
             data: [
-              { value: painLevelData["1"], name: "没事~" },
-              { value: painLevelData["2"], name: "轻微" },
-              { value: painLevelData["3"], name: "有点痛" },
-              { value: painLevelData["4"], name: "很痛" },
-              { value: painLevelData["5"], name: "剧痛" },
+              { value: uclerSizeData["1"], name: "芝麻" },
+              { value: uclerSizeData["2"], name: "小米" },
+              { value: uclerSizeData["3"], name: "高粱" },
+              { value: uclerSizeData["4"], name: "绿豆" },
+              { value: uclerSizeData["5"], name: "黄豆" },
             ],
           },
         ],
@@ -62,11 +62,15 @@ export default function PainLevelChart({ painLevelData, className }) {
     return () => {
       chart?.dispose();
     };
-  }, [chartRef.current, painLevelData, width]);
+  }, [chartRef.current, uclerSizeData, width]);
 
   return (
-    <Card className={`${className} justify-center items-center`}>
-      <Text>疼痛等级分布</Text>
+    <Card className="justify-center items-center">
+      <Text>溃疡大小分布</Text>
+      <Text className="text-xs text-gray-500">
+        芝麻:(1-2mm)、小米:(2-3mm)、高粱:(3-4mm)
+      </Text>
+      <Text className="text-xs text-gray-500">绿豆:(4-5mm)、黄豆:(5-8mm)</Text>
       <SvgChart ref={chartRef} />
     </Card>
   );
