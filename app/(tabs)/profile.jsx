@@ -30,6 +30,7 @@ const Profile = () => {
           <PressableListItem name="个人信息" href="(profile)/abouts" />
           <PressableListItem name="反馈" href="(profile)/feedback" />
           <PressableListItem name="关于" href="(profile)/about" />
+          <PressableListItem name="登录" href="(auth)/login" />
         </PressableListGroup>
       </View>
     </SafeAreaView>

@@ -2,8 +2,6 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
 
-const testToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InhzcWluZyIsImlhdCI6MTczODcyMTY2MywiZXhwIjoxNzM4OTM3NjYzfQ.3Apv66hMxBq896qZgNNFWpBPhuzm_T4Ov8jSfxv3Dts";
 const showToast = (message) => {
   Alert.alert("提示", message);
 };
@@ -18,7 +16,7 @@ const request = axios.create({
 
 request.interceptors.request.use(
   async (config) => {
-    const token = (await AsyncStorage.getItem("token")) || testToken;
+    const token = await AsyncStorage.getItem("token");
     if (!token) {
       return config;
     }
