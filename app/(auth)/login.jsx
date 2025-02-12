@@ -6,12 +6,16 @@ import { Button, ButtonText } from "@/components/ui/button";
 import { Link, LinkText } from "@/components/ui/link";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginWithPhone, sendVerificationCode } from "../../api/auth";
+import { useAuth } from "../../context/authContext";
 
 export default function LoginScreen() {
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
   const [countdown, setCountdown] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  // 全局上下文
+  const { setIsLogin } = useAuth();
 
   const startCountdown = () => {
     setCountdown(60);
@@ -49,6 +53,7 @@ export default function LoginScreen() {
       const response = await loginWithPhone(phone, code);
       if (response.data.accessToken) {
         await AsyncStorage.setItem("token", response.data.accessToken);
+        setIsLogin(true);
         router.replace("/");
       } else {
         throw new Error("登录失败");

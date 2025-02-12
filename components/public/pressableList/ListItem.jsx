@@ -4,9 +4,14 @@ import { Text } from "@/components/ui/text";
 import { Card } from "@/components/ui/card";
 import { Link } from "expo-router";
 
-const PressableListItem = ({ name, href, icon = ChevronRightIcon }) => {
+const PressableListItem = ({
+  name,
+  href,
+  onPress,
+  icon = ChevronRightIcon,
+}) => {
   return (
-    <Link href={href}>
+    <Link href={href} onPress={onPress}>
       <Card className>
         <HStack className="w-full justify-between items-center">
           <Text>{name}</Text>

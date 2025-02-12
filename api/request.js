@@ -1,7 +1,7 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
-
+import { clearAuth } from "../context/authContext";
 const showToast = (message) => {
   Alert.alert("提示", message);
 };
@@ -20,9 +20,7 @@ request.interceptors.request.use(
     if (!token) {
       return config;
     }
-
     config.headers.Authorization = `Bearer ${token}`;
-
     return config;
   },
   (error) => {
@@ -34,8 +32,10 @@ request.interceptors.response.use(
   (response) => {
     return response.data;
   },
-  (error) => {
-    console.log(error.response.data);
+  async (error) => {
+    // 如果是401错误，说明token无效或过期
+    if (error.response?.status === 401) {
+    }
     handleResonseError(error);
     return Promise.reject(error);
   }
@@ -57,7 +57,7 @@ function handleResonseError(error) {
     504: "网关超时",
   };
   if (status === 401) {
-    AsyncStorage.removeItem("token");
+    clearAuth();
   }
   if (errorMap[status]) {
     showToast(errorMap[status]);

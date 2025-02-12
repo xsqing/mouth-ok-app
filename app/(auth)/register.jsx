@@ -5,12 +5,15 @@ import { Input, InputField } from "@/components/ui/input";
 import { Button, ButtonText } from "@/components/ui/button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { registerWithPhone, sendVerificationCode } from "../../api/auth";
-
+import { useAuth } from "../../context/authContext";
 export default function RegisterScreen() {
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
   const [countdown, setCountdown] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  // 全局上下文
+  const { setIsLogin } = useAuth();
 
   const startCountdown = () => {
     setCountdown(60);
@@ -48,6 +51,7 @@ export default function RegisterScreen() {
       const response = await registerWithPhone(phone, code);
       if (response.data.accessToken) {
         await AsyncStorage.setItem("token", response.data.accessToken);
+        setIsLogin(true);
         router.replace("/");
       } else {
         throw new Error("注册失败");
