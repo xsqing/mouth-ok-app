@@ -42,7 +42,7 @@ const tabsMeta = [
     name: "Wiki",
     icon: "plus",
     component: WikiScreen,
-    headerShown: false,
+    headerShown: true,
   },
   {
     title: "我的",
