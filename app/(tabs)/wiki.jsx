@@ -13,7 +13,7 @@ const Wiki = () => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View className="min-h-[100vh] bg-white p-4">
+      <View className="min-h-[100vh] bg-white p-4 gap-2">
         {wikiData?.map((item, index) => (
           <WikiItem key={index} index={index} data={item} />
         ))}
