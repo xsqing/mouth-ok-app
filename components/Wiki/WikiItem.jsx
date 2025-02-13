@@ -1,9 +1,13 @@
 import { Pressable, Text, View } from "react-native";
-import { Card } from "../ui/card";
 import { Image } from "../ui/image";
+import { router } from "expo-router";
 export default function WikiItem({ data, index = 0 }) {
   return (
-    <Pressable>
+    <Pressable
+      onPress={() => {
+        router.push(`(wiki)/details/${data.id}`);
+      }}
+    >
       {({ pressed }) => (
         <View
           className={`flex-row gap-4 bg-gray-100 p-4 rounded-md ${

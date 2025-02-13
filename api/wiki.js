@@ -12,3 +12,17 @@ export const getWikiList = async () => {
     return null;
   }
 };
+
+/**
+ * 获取wiki详情
+ * @param {string} id
+ * @returns
+ */
+export const getWikiById = async (id) => {
+  try {
+    const res = await request.get(`/wiki/detail?id=${id}`);
+    return res.data;
+  } catch (error) {
+    return null;
+  }
+};
