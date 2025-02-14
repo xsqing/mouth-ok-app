@@ -20,7 +20,7 @@ export const getWikiList = async () => {
  */
 export const getWikiById = async (id) => {
   try {
-    const res = await request.get(`/wiki/detail?id=${id}`);
+    const res = await request.get(`/wiki/detail/${id}`);
     return res.data;
   } catch (error) {
     return null;
