@@ -20,5 +20,10 @@ export async function logout() {
 }
 
 export async function checkLogin() {
-  return request.get("/auth/checkLogin");
+  try {
+    const res = await request.get("/auth/checkLogin");
+    return res.data;
+  } catch (error) {
+    return null;
+  }
 }

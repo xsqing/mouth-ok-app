@@ -124,7 +124,7 @@ const Record = () => {
   }, [monthStatisticsData]);
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View className="min-h-[100vh] p-4">
         {/* <Statistic
           currentDate={currSelectedDate}

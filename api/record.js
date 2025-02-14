@@ -16,20 +16,6 @@ export const getRecordByDate = async (date) => {
   }
 };
 
-export const createRecordByDate = async (date, user) => {
-  // const record = new Record();
-  // record.set("hasUcler", false);
-  // record.set("owner", user);
-  // record.set("date", date);
-  // console.log(record);
-  // // try {
-  // await record.save();
-  // return record;
-  // } catch (error) {
-  //   ErrorAlert();
-  // }
-};
-
 export const updateRecord = async (recordId, kvMap) => {
   if (!recordId) {
     return null;
@@ -57,14 +43,4 @@ export const getMonthStatistics = async (month) => {
   } catch (error) {
     return null;
   }
-};
-
-const getMarkedDays = (records) => {
-  // const markedDays = {};
-  // for (const record of records) {
-  //   let date = record.get("date");
-  //   date = dayjs(date).format("YYYY-MM-DD");
-  //   markedDays[date] = { marked: true };
-  // }
-  // return markedDays;
 };

@@ -49,7 +49,7 @@ const tabsMeta = [
     name: "Profile",
     icon: "profile",
     component: ProfileScreen,
-    headerShown: false,
+    headerShown: true,
   },
 ];
 

@@ -21,7 +21,6 @@ export const getWikiList = async () => {
 export const getWikiById = async (id) => {
   try {
     const res = await request.get(`/wiki/detail/${id}`);
-    console.log(res.data);
     return res.data;
   } catch (error) {
     return null;

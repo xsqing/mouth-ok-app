@@ -17,11 +17,11 @@ export default function RootLayout() {
     antoutline: require("@ant-design/icons-react-native/fonts/antoutline.ttf"),
   });
   const { setUser, setIsLogin } = globalAuth;
-  const { loading: checkLoading, data } = useRequest(checkLogin);
+  const { loading: checkLoading, data: userInfo } = useRequest(checkLogin);
 
   useEffect(() => {
     if (!checkLoading) {
-      setUser(data?.data);
+      setUser(userInfo);
       setIsLogin(true);
     }
     if (loaded && !checkLoading) {
